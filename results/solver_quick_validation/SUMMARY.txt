@@ -1,0 +1,44 @@
+MVSK QUICK SOLVER VALIDATION
+============================
+
+Overall verdict: FAIL
+Recommendation: Repaired solver validation found a material numerical issue. A corrected full U=100 rerun is likely required after fixing and validating the optimizer.
+
+Sample
+  Episodes: 20
+  Interior starts per episode: 20
+  SOLNP workers: 8
+
+Original v17 start geometry (random starts only)
+  Median exact-zero weights per start: 39
+  Median at-cap weights per start: 2
+  Median effective holdings: 8.26
+
+Repaired start geometry
+  Median exact-zero weights per start: 0
+  Median at-cap weights per start: 0
+  Median effective holdings: 35.88
+
+MVSK repaired multistart
+  Median converged starts: 20 / 20
+  Episodes with no converged repaired start: 0
+  Episodes with material objective improvement: 4
+  Episodes with severe objective improvement: 3
+  Episodes with materially different weights: 4
+  Maximum saved-vs-reconstructed utility error: 0e+00
+  Reconstruction problem flagged: FALSE
+  Median utility gain: 9.8624e-09
+  Maximum utility gain: 2.889e-03
+  Maximum local perturbation objective improvement: -2.4631e-07
+
+Convex MV QP control
+  quadprog installed: TRUE
+  Successful QP controls: 20 / 20
+  Maximum QP utility gain over saved MV: 1.632e-06
+  QP control problem flagged: FALSE
+
+IMPORTANT
+This is a fast numerical triage. PASS would mean the suspected start-generation
+failure does not appear to change the selected MVSK optimum materially in the
+stratified sample. The observed FAIL means the v17 optimizer protocol requires
+correction and validation before the full empirical result is treated as final.
